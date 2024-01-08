@@ -1,0 +1,218 @@
+version: '3.6'
+
+volumes:
+  zookeeper-data:
+    driver: local
+  zookeeper-log:
+    driver: local
+  kafka-data:
+    driver: local 
+    
+services:
+  # ------------------------------------------------------------ #
+  # akhq: Kafka GUI for Apache Kafka to manage topics, 
+  #       topics data, consumers group, schema registry, connect ..
+  # ----------------- -------------------------------------------#
+  akhq:
+    image: tchiotludo/akhq
+    restart: unless-stopped
+    container_name: akhq
+    environment:
+      AKHQ_CONFIGURATION: |
+        akhq:
+          connections:
+            docker-kafka-server:
+              properties:
+                bootstrap.servers: "kafka:9092"
+              connect:
+                - name: "connect"
+                  url: "http:// localhost:8083"
+
+    ports:
+      - 8080:8080
+    links:
+      - kafka
+    networks:
+      - MONGO
+  # -----------------------------#
+  # Zookeeper, Apache Kafka      #
+  # ---------------------------- #
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:${CONFLUENT_VERSION:-latest}
+    restart: unless-stopped
+    container_name: zookeeper
+    volumes:
+      - zookeeper-data:/var/lib/zookeeper/data:Z
+      - zookeeper-log:/var/lib/zookeeper/log:Z
+    environment:
+      ZOOKEEPER_CLIENT_PORT: '2181'
+      ZOOKEEPER_ADMIN_ENABLE_SERVER: 'false'
+    networks:
+      - MONGO 
+
+
+  kafka:
+    image: confluentinc/cp-kafka:${CONFLUENT_VERSION:-latest}
+    restart: unless-stopped
+    container_name: kafka
+    volumes:
+      - kafka-data:/var/lib/kafka/data:Z
+    environment:
+      KAFKA_BROKER_ID: '0'
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_NUM_PARTITIONS: '12'
+      KAFKA_COMPRESSION_TYPE: 'gzip'
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: '1'
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: '1'
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: '1'
+      KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://kafka:9092'
+      KAFKA_CONFLUENT_SUPPORT_METRICS_ENABLE: 'false'
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+      KAFKA_AUTHORIZER_CLASS_NAME: 'kafka.security.authorizer.AclAuthorizer'
+      KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: 'true'
+    links:
+      - zookeeper
+    networks:
+      - MONGO
+ 
+
+  # -----------------------------#
+  # Kafka Connect                #
+  # ---------------------------- #
+
+  connect:
+    image: confluentinc/cp-kafka-connect:${CONFLUENT_VERSION:-latest}
+    container_name: connect1
+    restart: unless-stopped
+    ports:
+      - 8083:8083
+    environment:
+      CONNECT_BOOTSTRAP_SERVERS: 'kafka:9092'
+      CONNECT_REST_PORT: 8083
+      CONNECT_REST_ADVERTISED_HOST_NAME: 'localhost'
+      CONNECT_CONFIG_STORAGE_TOPIC: '__connect-config'
+      CONNECT_OFFSET_STORAGE_TOPIC: '__connect-offsets'
+      CONNECT_STATUS_STORAGE_TOPIC: '__connect-status'
+      CONNECT_GROUP_ID: 'kafka-connect'
+      CONNECT_KEY_CONVERTER_SCHEMAS_ENABLE: 'true'
+      CONNECT_KEY_CONVERTER: 'io.confluent.connect.avro.AvroConverter'
+      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: 'http://schema-registry:8085'
+      CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE: 'true'
+      CONNECT_VALUE_CONVERTER: 'io.confluent.connect.avro.AvroConverter'
+      CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: 'http://schema-registry:8085'
+      CONNECT_INTERNAL_KEY_CONVERTER: 'org.apache.kafka.connect.json.JsonConverter'
+      CONNECT_INTERNAL_VALUE_CONVERTER: 'org.apache.kafka.connect.json.JsonConverter'
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: '1'
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: '1'
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: '1'
+      CONNECT_PLUGIN_PATH: /usr/share/java/,/etc/kafka-connect/jars
+    volumes:
+      - ./kafka-jars:/etc/kafka-connect/jars
+    networks:
+      - MONGO
+
+  # -------------------------------------------------#
+  # Create 3 mongo servers that will act as replicas #
+  # -------------------------------------------------#
+
+  mongo1:
+    hostname: mongo1
+    container_name: mongo1
+    image: mongo
+    expose:
+      - 27017
+    ports:
+      - 30001:27017 
+    restart: always
+    command: mongod --replSet my-mongo-set
+    networks:
+      - MONGO
+  mongo2:
+    hostname: mongo2
+    container_name: mongo2
+    image: mongo
+    expose:
+      - 27017
+    ports:
+      - 30002:27017
+    restart: always
+    command: mongod --replSet my-mongo-set
+    networks:
+      - MONGO
+  mongo3:
+    hostname: mongo3
+    container_name: mongo3
+    image: mongo
+    expose:
+      - 27017
+    ports:
+      - 30003:27017
+    restart: always
+    command: mongod --replSet my-mongo-set
+    networks:
+      - MONGO
+
+  # -------------------------------------------------------------#  
+  # Define the initialization server
+  # that runs the `rs.initiate` command to intialize
+  # the replica set and connect the three servers to each other
+  # -------------------------------------------------------------#  
+
+  mongoinit:
+    image: mongo
+    # this container will exit after executing the command
+    restart: "no"
+    depends_on:
+      - mongo1
+      - mongo2
+      - mongo3
+    command: >
+      mongosh --host  localhost:30001 --eval 
+      '
+      db = (new Mongo(" localhost:30001")).getDB("test");
+      config = {
+      "_id" : "my-mongo-set",
+      "members" : [
+        {
+          "_id" : 0,
+          "host" : "mongo1:27017"
+        },
+        {
+          "_id" : 1,
+          "host" : "mongo2:27017"
+        },
+        {
+          "_id" : 2,
+          "host" : "mongo3:27017"
+        }
+      ]
+      };
+      rs.initiate(config);
+      '      
+ 
+
+  # -----------------------------#
+  # Mongo Express                #
+  # ---------------------------- # 
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: password
+      ME_CONFIG_MONGODB_SERVER:  localhost
+      ME_CONFIG_MONGODB_PORT: "30001,30002,30003"
+    ports:
+      - "0.0.0.0:8081:8081"
+    networks:
+      - MONGO
+    depends_on:
+      - mongo1
+      - mongo2
+      - mongo3
+ 
+
+networks:
+  MONGO:
+    name: MONGO
