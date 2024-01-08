@@ -167,6 +167,8 @@ services:
       - mongo1
       - mongo2
       - mongo3
+    networks:
+      - MONGO
     command: >
       mongosh --host  localhost:30001 --eval 
       '
