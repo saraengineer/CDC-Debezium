@@ -26,7 +26,7 @@ services:
                 bootstrap.servers: "kafka:9092"
               connect:
                 - name: "connect"
-                  url: "http:// localhost:8083"
+                  url: "http://localhost:8083"
 
     ports:
       - 8080:8080
@@ -172,7 +172,7 @@ services:
     command: >
       mongosh --host  localhost:30001 --eval 
       '
-      db = (new Mongo(" localhost:30001")).getDB("test");
+      db = (new Mongo("localhost:30001")).getDB("test");
       config = {
       "_id" : "my-mongo-set",
       "members" : [
@@ -203,7 +203,7 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: admin
       ME_CONFIG_MONGODB_ADMINPASSWORD: password
-      ME_CONFIG_MONGODB_SERVER:  localhost
+      ME_CONFIG_MONGODB_SERVER: localhost
       ME_CONFIG_MONGODB_PORT: "30001,30002,30003"
     ports:
       - "0.0.0.0:8081:8081"
