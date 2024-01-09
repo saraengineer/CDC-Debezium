@@ -3,7 +3,6 @@ Aaron Brady
 Aaron Rosenberg
 Abhishek Gupta
 Abhishek Hodavdekar
-Adam Strickland
 Addison Higham
 Adham
 Adrian Kreuziger
@@ -28,7 +27,6 @@ Anatolii Popov
 Anders Engström
 Andrea Cosentino
 Andreas Bergmeier
-Andreas Martens
 Andras Istvan Nagy
 Andrew Garrett
 Andrew Tongen
@@ -37,30 +35,24 @@ Andrey Ignatenko
 Andrey Pustovetov
 Andrey Savchuk
 Andrey Yegorov
-Andy Pickler
 Andy Teijelo
-Angshuman Dey
 Anil Dasari
 Animesh Kumar
 Anisha Mohanty
-Ant Kutschera
 Anton Kondratev
 Anton Martynov
 Arik Cohen
 Arkoprabho Chakraborti
 artiship
-Artur Gukasian
 Ashhar Hasan
 Ashique Ansari
 Ashmeet Lamba
 Attila Szucs
 Avinash Vishwakarma
 Aykut Farsak
-baabgai
 Babur Duisenov
 Balázs Németh
 Balázs Sipos
-Balint Bene
 Barry LaFond
 Bartosz Miedlar
 Ben Hardesty
@@ -79,26 +71,21 @@ Braden Staudacher
 Brandon Brown
 Brandon Maguire
 Brennan Vincent
-Breno Moreira
 Byron Ruth
 Camile Sing
-ccro
 César Martínez
 Cao Manh Dat
 Chad Marmon
 Chai Stofkoper
-Chao Tian
 Calin Laurentiu Ilie
 Cheng Pan
 Ching Tsai
 Chris Baumbauer
-Chris Beard
 Chris Collingwood
 Chris Cranford
 Chris Egerton
 Chris Lee
 Chris Riccomini
-Christian Jacob Mencias
 Christian Posta
 Christian Stein
 Christopher Burch
@@ -117,13 +104,11 @@ Daan Roosen
 Daniel Petisme
 Dave Cramer
 Dave Cumberland
-David Beck
 David Chen
 David Feinblum
 David Haglund
 David Jerome
 David Leibovic
-David Remy
 David Seapy
 David Szabo
 Debjeet Sarkar
@@ -146,11 +131,9 @@ Egyed Tamas
 Elan Hasson
 Eliran Agranovich
 Emmanuel Brard
-Emre Akgün
 Emrul Islam
 Enzo Cappa
 Erdinç Taşkın
-Eric Pangiawan
 Eric Slep
 Eric Weaver
 Eric S. Kreiseir
@@ -163,7 +146,6 @@ Fabian Aussems
 Fabian Martinez
 Fabio Cantarini
 Fahim Farook
-Fai Ho Fu
 Faizan
 Farid Uyar
 Fatih Güçlü Akkaya
@@ -172,7 +154,6 @@ Felix Eckhardt
 Fintan Bolton
 Frank Koornstra
 Frank Mormino
-Frederic Laurent
 Gabor Andras
 Gagan Agrawal
 Ganesh Ramasubramanian
@@ -189,7 +170,6 @@ Gurnaaz Randhawa
 Guy Korland
 Guy Pascarella
 Grzegorz Kołakowski
-ibnubay
 Jacob Barrieault
 Jacob Gminder
 Jakub Zalas
@@ -198,10 +178,7 @@ Jan Hendrik Dolling
 Jan Werner
 Jannik Steinmann
 Jason Schweier
-Jesse Ehrenzweig
 Jiabao Sun
-Jiri Kulhanek
-Jordan Pittier
 Juan Fiallo
 Jun Zhao
 Hady Willi
@@ -223,7 +200,6 @@ Hyunjin Oh
 Ian Axelrod
 Igor Gabaydulin
 Ilia Bogdanov
-Ilyas Ahsan
 Ingmar Fjolla
 Indra Shukla
 Inki Hwang
@@ -275,21 +251,16 @@ Jun Du
 Jure Kajzer
 Justin Hiza
 Kanha Gupta
-Kanthi Subramanian
 Katerina Galieva
 Kaushik Iyer
-Kaustuv Chakrabarti
 Kazuki MATSUDA / 松田一樹
 Keith Barber
 Keri Harris
 Kevin Pullin
 Kewei Shang
-Kosta Kostelnik
 Krizhan Mariampillai
 Kyley Jex
 Lairen Hightower
-laoflch
-Lars M. Johansson
 Lars Werkman
 Laurent Broudoux
 Leo Mei
@@ -301,7 +272,6 @@ Liu Hanlin
 Liu Lang Wa
 Liz Chatman
 Lokesh Sanapalli
-Lourens Naudé
 Luca Scannapieco
 Luis Garcés-Erice
 Lukas Krejci
@@ -319,13 +289,11 @@ Mario Mueller
 Mariusz Strzelecki
 Mark Bereznitsky
 Mark Drilling
-Mark Ducommun
 Mark Lambert
 Martin Medek
 Martin Sillence
 Masazumi Kobayashi
 Matt Beary
-Matt Vance
 Matteo Capitanio
 Mathieu Rozieres
 Matthias Wessendorf
@@ -381,7 +349,6 @@ Oscar Romero
 Oskar Polak
 Patrick Chu
 Pavel Strashkin
-Paul Cheung
 Paul Mellor
 Paul Tzen
 Paweł Malon
@@ -400,7 +367,6 @@ Preethi Sadagopan
 pushpavanthar
 Qishang Zhong
 Raf Liwoch
-Rafael Câmara
 Raghava Ponnam
 Rajendra Dangwal
 Ram Satish
@@ -413,7 +379,6 @@ Renato Mefi
 René Kerner
 Robert Hana
 Roman Kuchar
-Roman Kudryashov
 Rotem Adhoh
 Sagar Rao
 Sahan Dilshan
@@ -427,7 +392,6 @@ Ruslan Gibaiev
 Russell Ballard
 Russell Mora
 Ruud H.G. van Tol
-Ryan van Huuksloot
 Sage Pierce
 Sairam Polavarapu
 Sanjay Kr Singh
@@ -438,7 +402,6 @@ Sayed Mohammad Hossein Torabi
 Scofield Xu
 Sara Fonseca
 Sean Rooney
-Sebastiaan Knijnenburg
 Sebastian Bruckner
 Seo Jae-kwon
 Sergei Morozov
@@ -462,7 +425,6 @@ Steven Siahetiong
 Subodh Kant Chaturvedi
 Sun Xiao Jian
 Sungho Hwang
-Stein Rolevink
 Syed Muhammad Sufyian
 Tapani Moilanen
 Tautvydas Januskevicius
@@ -478,7 +440,6 @@ Thomas Deblock
 Thomas Prelle
 Thomas Thornton
 Tim Loes
-tisonkun
 Timo Roeseler
 Tin Nguyen
 Tom Bentley
@@ -486,19 +447,15 @@ Tom Billiet
 Tim Patterson
 Tomaz Lemos Fernandes
 Tommy Karlsson
-Tomoyuki Nakamura
 Tony Joseph
 Tony Rizko
 tooptoop4
 Tova Cohen
 Travis Elnicky
 Troy Gaines
-Tudor Plugaru
-V K
 Vadzim Ramanenka
 Vasily Ulianko
 Vedit Firat Arig
-Vincenzo Santonastaso
 Victar Malinouski
 Victor Xiang
 Vivek Wassan
@@ -517,17 +474,14 @@ Wu Zhenhua
 Wout Scheepers
 Xiao Fu
 Xiaojian Sun
-Xiaolin Zhang
 Xiaopu Zhu
 Xinbin Huang
 Xinquan She
 Xuan Shen
 Yang Wu
 Yang Yang
-Yanjie Wang
 yangrong688
 yangsanity
-Yashashree Chopada
 Yilong Chang
 Yiming Liu
 Yingying Tang
@@ -535,7 +489,6 @@ Yoann Rodière
 Yohei Yoshimuta
 Yossi Shirizli
 Yuan Zhang
-Yue Wang
 Yuiham Chan
 Zheng Wang
 Zongwen Li
@@ -549,7 +502,6 @@ Zoran Regvart
 胡琴
 Snigdhajyoti Ghosh
 Andrei Isac
-M. Gökhan Akgül
 Mark Allanson
 Rahul Khanna
 Ronak Jain
@@ -564,13 +516,3 @@ Moustapha Mahfoud
 RJ Nowling
 蔡灿材
 ddsr-ops
-Ben White
-Miguel Angel Sotomayor
-Stephen Clarkson
-Gurps Bassi
-Massimo Fortunat
-Vincenzo Santonastaso
-Matan Cohen
-Don Seiler
-Ahmed Rachid Hazourli
-Pavithrananda Prabhu
